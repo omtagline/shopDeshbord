@@ -1,0 +1,76 @@
+<div class="bg-dark">
+  <div
+    class="container vh-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="main p-5 rounded rounded-4">
+      <form action="" [formGroup]="loginForm" (submit)="login()">
+        <h1 class="text-center mb-2">Login</h1>
+        <div class="row">
+          <div class="col-12">
+            <label for="username" class="form-label">username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="username"
+              formControlName="username"
+            />
+            <p
+              class="text-danger rounded mt-1"
+              [hidden]="
+                loginForm.get('username')?.valid ||
+                loginForm.get('username')?.untouched
+              "
+            >
+              Enter valid username
+            </p>
+          </div>
+          <div class="col-12">
+            <label for="email" class="form-label">email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              formControlName="email"
+            />
+            <p
+              class="text-danger rounded mt-1"
+              [hidden]="
+                loginForm.get('email')?.valid ||
+                loginForm.get('email')?.untouched
+              "
+            >
+              Enter valid email
+            </p>
+          </div>
+          <div class="col-12">
+            <label for="password" class="form-label">password</label>
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              formControlName="pswd"
+            />
+            <p
+              class="text-danger rounded mt-1"
+              [hidden]="
+                loginForm.get('pswd')?.valid || loginForm.get('pswd')?.untouched
+              "
+            >
+              Enter valid password
+            </p>
+          </div>
+          <div class="d-flex justify-content-center w-100 mt-3">
+            <button
+              type="submit"
+              class="btn btn-dark"
+              [disabled]="loginForm.valid"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
