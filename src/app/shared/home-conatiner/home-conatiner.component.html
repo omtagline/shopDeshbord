@@ -1,0 +1,15 @@
+<div class="row mt-5">
+  @for (data of homedata; track $index) {
+
+  <div [ngClass]="data.class" class="">
+    <div
+      class="d-flex p-4 rounded rounded-2 flex-column hcard h-100 justify-content-center align-items-center"
+    >
+      <p class="fs-4 fw-semibold">
+        {{ data.title }}
+      </p>
+      <p class="fs-3 fw-bold">{{ data.length }}</p>
+    </div>
+  </div>
+  }
+</div>

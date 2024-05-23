@@ -1,3 +1,4 @@
+import { state } from '@angular/animations';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -6,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +18,10 @@ import {
 })
 export class LoginComponent {
   loginForm!: FormGroup;
-  constructor(private formbuilder: FormBuilder) {
+  constructor(private formbuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formbuilder.group({
       email: ['', [Validators.email, Validators.required]],
       pswd: ['', [Validators.required, Validators.minLength(5)]],
-      username: ['', [Validators.required]],
     });
   }
   // Email = new FormControl('', [Validators.email, Validators.required]);
@@ -31,7 +32,14 @@ export class LoginComponent {
   // ]);
   // loginForm = new FormGroup([this.Email, this.pswd, this.username]);
 
-  login() {
-    console.log('this.loginForm.value :>> ', this.loginForm.value);
+  login(e: Event) {
+    let values = this.loginForm.value;
+    if (values.email == 'admin@gmail.com' && values.pswd == 'admin@123') {
+      localStorage.setItem('isAuth', 'true');
+      this.router.navigate(['']);
+    } else {
+      localStorage.setItem('isAuth', 'false');
+      alert('usernmae and Password incorrect');
+    }
   }
 }

@@ -1,0 +1,29 @@
+<div class="row g-3">
+  @for (item of products; track $index) {
+  <div class="col-3">
+    <div class="card h-100">
+      <img
+        [src]="item.thumbnail | unsenitize"
+        alt=""
+        class="card-img-top"
+        [routerLink]="[item.id]"
+      />
+
+      <div class="card-body align-content-end">
+        <h4 class="card-title">{{ item.title }}</h4>
+        <h6 class="card-subtitle">${{ item.price }}</h6>
+        <p class="card-text text-muted">{{ item.description }}</p>
+        <div class="w-100 d-flex justify-content-around">
+          <button class="btn btn-danger" (click)="deleteProduct(item.id)">
+            Delete<i class="fs-6 fw-bold bi bi-trash-fill"></i>
+          </button>
+
+          <button (click)="edit(item.id)" class="btn ms-4 btn-primary">
+            Edit <i class="fs-6 fw-bold bi bi-pencil"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

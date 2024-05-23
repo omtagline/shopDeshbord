@@ -1,4 +1,6 @@
-<div class="d-flex flex-column sidebar h-100 bg-black px-3 min-vh-100 h-100">
+<div
+  class="d-flex flex-column sidebar bg-black px-3 min-vh-100 max-vh-100 position-sticky top-0"
+>
   <a
     routerLink="/"
     routerLinkActive="active"
@@ -14,4 +16,25 @@
   >
     <h5><i class="bi bi-person-fill px-2"></i>Profile</h5>
   </a>
+  <hr class="text-white" />
+  <a
+    routerLink="addproducts"
+    routerLinkActive="active"
+    class="text-decoration-none text-white pt-1 nav-link"
+  >
+    <h5><i class="px-2 bi bi-plus-circle-fill"></i>Add Products</h5>
+  </a>
+  <a
+    routerLink="product"
+    routerLinkActive="active"
+    class="text-decoration-none text-white pt-1 nav-link"
+  >
+    <h5><i class="px-2 bi bi-list-stars"></i>Product List</h5>
+  </a>
+  <button
+    class="btn pt-1 nav-link bg-white mt-5 w-50 text-dark align-self-baseline"
+    (click)="logOut()"
+  >
+    <h5><i class="px-2 bi bi-x-circle-fill"></i>Logout</h5>
+  </button>
 </div>

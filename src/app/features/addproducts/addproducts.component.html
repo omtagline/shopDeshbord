@@ -1,0 +1,118 @@
+<div class="container">
+  <div
+    class="pt-5 d-flex justify-content-center align-items-center flex-column"
+  >
+    @if (editProductId) {
+
+    <h1 class="text-center py-5">Edit Products</h1>
+    }@else{
+    <h1 class="text-center py-5">Add Products</h1>
+
+    }
+    <form [formGroup]="addform" class="mt-5">
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <label for="category" class="form-label"> Product category:</label>
+          <select
+            type="text"
+            class="form-select"
+            name="category"
+            id="category"
+            size="1"
+            formControlName="category"
+          >
+            <option class="">select Category</option>
+            @for (item of category; track $index) {
+            <option [value]="item">{{ item }}</option>
+            }
+          </select>
+        </div>
+        <div class="col-3">
+          <label for="name" class="form-label"> Product Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            id="name"
+            formControlName="title"
+            placeholder="product name"
+          />
+        </div>
+
+        <div class="col-3">
+          <label for="price" class="form-label">price:</label>
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            id="price"
+            formControlName="price"
+            placeholder="product price"
+          />
+        </div>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <div class="col-3">
+          <label for="rating" class="form-label"> rating</label>
+          <input
+            type="text"
+            class="form-control"
+            name="rating"
+            id="rating"
+            formControlName="rating"
+            placeholder="rating"
+          />
+        </div>
+        <div class="col-3">
+          <label for="description" class="form-label"> description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="description"
+            formControlName="description"
+            placeholder="description"
+          />
+        </div>
+
+        <div class="col-3">
+          <label for="thumbnail" class="form-label">thumbnail:</label>
+          <input
+            type="file"
+            class="form-control"
+            name="thumbnail"
+            formControlName="thumbnail"
+            id="thumbnail"
+            accept="image/*"
+            placeholder="product thumbnail"
+          />
+        </div>
+      </div>
+      <div class="w-100 d-flex justify-content-center mt-5">
+        @if (!editProductId) {
+        <button
+          type="submit"
+          class="btn btn-dark"
+          (click)="addProducts()"
+          [disabled]="addform.invalid"
+        >
+          Add<i class="ms-2 bi bi-check2-square"></i>
+        </button>
+        }@else {
+        <button
+          type="submit"
+          class="btn btn-dark"
+          (click)="editProducts()"
+          [disabled]="addform.invalid"
+        >
+          save Edits<i class="ms-2 bi bi-check2-square"></i>
+        </button>
+        }
+
+        <button class="btn btn-danger ms-2" (click)="resetForm()">
+          reset <i class="bi bi-x-square"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
