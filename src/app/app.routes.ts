@@ -6,18 +6,16 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./features/login/login.component').then((e) => e.LoginComponent),
-
-    // canActivate: [authGuard],
+      import('./features/forms/login/login.component').then(
+        (e) => e.LoginComponent
+      ),
   },
   {
     path: 'singup',
     loadComponent: () =>
-      import('./features/sing-up/sing-up.component').then(
+      import('./features/forms/sing-up/sing-up.component').then(
         (e) => e.SingUpComponent
       ),
-
-    // canActivate: [authGuard],
   },
   {
     path: 'profile',
@@ -32,6 +30,22 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/product-details/product-details.component').then(
         (e) => e.ProductDetailsComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'todo',
+    loadComponent: () =>
+      import('./features/forms/todo/todo.component').then(
+        (e) => e.TodoComponent
+      ),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'templetform',
+    loadComponent: () =>
+      import('./features/forms/templet-frm/templet-frm.component').then(
+        (e) => e.TempletFrmComponent
       ),
     canActivate: [authGuard],
   },

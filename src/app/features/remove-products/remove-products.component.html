@@ -1,12 +1,25 @@
 <div class="container">
-  <div class="mt-5 mb-4 w-25">
+  <div class="mt-5 mb-4 w-50">
     <p class="fs-4">Filter</p>
-    <select class="form-select" (change)="categoryChange($event)">
-      <option value="">plese slelect</option>
-      @for (item of category; track $index) {
-      <option [value]="item">{{ item }}</option>
-      }
-    </select>
+    <div class="d-flex align-items-baseline">
+      <select class="form-select" (change)="categoryChange($event)">
+        <option value="">plese slelect</option>
+        @for (item of category; track $index) {
+        <option [value]="item">{{ item }}</option>
+        }
+      </select>
+      <p class="fs-4 ms-5 fw-">Price</p>
+      <input
+        type="range"
+        min="0"
+        class="mx-2 form-range"
+        max="5000"
+        #rang
+        (change)="filterProducts(rang)"
+        [(ngModel)]="range"
+      />
+      {{ range }}
+    </div>
   </div>
   <app-cart-card [products]="products" [delete]="true"></app-cart-card>
 </div>

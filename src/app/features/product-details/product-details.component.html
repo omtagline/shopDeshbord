@@ -4,9 +4,13 @@
 <div class="container pt-3 overflow-hidden">
   <div class="row justify-content-evenly">
     <div class="col-4 bg-gradient">
-      <img [src]="productData.images[0]" alt="" class="w-100 h-50" />
       <img
-        class="mt-4 w-100 h-50"
+        [src]="productData.images[0]"
+        alt=""
+        class="w-100 h-50 object-fit-cover"
+      />
+      <img
+        class="mt-4 w-100 h-50 object-fit-cover"
         height=""
         [src]="productData.images[2]"
         alt=""

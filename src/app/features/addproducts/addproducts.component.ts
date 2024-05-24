@@ -66,6 +66,7 @@ export class AddproductsComponent {
     private formBulder: FormBuilder
   ) {
     products.getCategory().subscribe((data) => {
+      console.log(data);
       this.category = data;
     });
     this.createForm();

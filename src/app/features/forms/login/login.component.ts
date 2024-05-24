@@ -1,5 +1,5 @@
 import { state } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  auth = inject(AuthService);
   loginForm!: FormGroup;
   constructor(private formbuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formbuilder.group({
@@ -34,12 +36,6 @@ export class LoginComponent {
 
   login(e: Event) {
     let values = this.loginForm.value;
-    if (values.email == 'admin@gmail.com' && values.pswd == 'admin@123') {
-      localStorage.setItem('isAuth', 'true');
-      this.router.navigate(['']);
-    } else {
-      localStorage.setItem('isAuth', 'false');
-      alert('usernmae and Password incorrect');
-    }
+    this.auth.login(values.email, values.pswd);
   }
 }

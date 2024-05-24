@@ -31,6 +31,50 @@
   >
     <h5><i class="px-2 bi bi-list-stars"></i>Product List</h5>
   </a>
+
+  <div class="btn-group">
+    <a
+      class="text-white pt-1 nav-link ps-2 fs-5 dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i class="bi bi-list pe-2 fs-5"></i>Forms Demo
+    </a>
+    <ul class="dropdown-menu bg-dark">
+      <li>
+        <a
+          class="dropdown-item text-white"
+          routerLink="todo"
+          routerLinkActive="active"
+          >TODO</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item text-white"
+          routerLink="singup"
+          routerLinkActive="active"
+          >Nested</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item text-white"
+          routerLink="login"
+          routerLinkActive="active"
+          >Normal</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item text-white"
+          routerLink="templetform"
+          routerLinkActive="active"
+          >Templet form</a
+        >
+      </li>
+    </ul>
+  </div>
   <button
     class="btn pt-1 nav-link bg-white mt-5 w-50 text-dark align-self-baseline"
     (click)="logOut()"

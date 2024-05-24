@@ -1,0 +1,149 @@
+<div class="container">
+  <form
+    (ngSubmit)="studentFormSubmit(student)"
+    class="w-100 vh-100 d-flex flex-column justify-content-center align-items-center"
+    #student="ngForm"
+  >
+    <h3 class="">Paper Submition Form</h3>
+    <span class="border border-2 border-black w-75"></span>
+    <div class="w-50 p-4">
+      <div class="row">
+        <div class="col-6">
+          <label for="name" class="form-label text-muted mb-1 pt-2"
+            >First Name</label
+          >
+          <input
+            required
+            type="text"
+            name="name"
+            #fname="ngModel"
+          ngModel
+            class="name form-control"
+          />
+          <div [hidden]="fname.valid || fname.pristine" class="text-danger">
+            enter your name
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="lName" class="form-label text-muted mb-1 pt-2"
+            >Last Name</label
+          >
+          <input
+            required
+            type="text"
+            name="lName"
+            #last="ngModel"
+            [(ngModel)]="lastNmae"
+            class="lName form-control"
+          />
+          <div class="text-danger" [hidden]="last.valid || last.pristine">
+            enter the last name
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="date" class="form-label text-muted mb-1 pt-2">Date</label>
+          <input
+            required
+            type="date"
+            name="date"
+            #d="ngModel"
+            [(ngModel)]="date"
+            class="date form-control"
+          />
+          <div class="text-danger" [hidden]="d.valid || d.pristine">
+            select the date
+          </div>
+        </div>
+        <div class="col-6">
+          <label for="email" class="form-label text-muted mb-1 pt-2"
+            >email</label
+          >
+          <input
+            required
+            type="text"
+            name="email"
+            [(ngModel)]="email"
+            #emails="ngModel"
+            class="email form-control"
+          />
+          <div class="text-danger" [hidden]="emails.valid || emails.pristine">
+            enter the email
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="studentId" class="form-label text-muted mb-1 pt-2"
+            >student Id</label
+          >
+          <input
+            required
+            #sid="ngModel"
+            minlength="10"
+            type="text"
+            class="form-control"
+            name="studentId"
+            [(ngModel)]="studentId"
+          />
+          <div class="text-danger" [hidden]="sid.valid || sid.pristine">
+            enter the sid and it lenght must be grater than 10
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="paperTitle" class="form-label text-muted mb-1 pt-2"
+            >Paper Title</label
+          >
+          <input
+            required
+            #ptitle="ngModel"
+            type="text"
+            class="form-control"
+            name="paperTitle"
+            [(ngModel)]="paperTitle"
+          />
+          <div class="text-danger" [hidden]="ptitle.valid || ptitle.pristine">
+            enter the paper title
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label text-muted mb-1 pt-2"
+            >Description</label
+          >
+          <input
+            required
+            type="text"
+            #des="ngModel"
+            class="form-control"
+            name="description"
+            [(ngModel)]="description"
+          />
+          <div class="text-danger" [hidden]="des.valid || des.pristine">
+            enter the description
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="file" class="form-label text-muted mb-1 pt-2">File</label>
+          <input
+            required
+            type="file"
+            #fil="ngModel"
+            accept="*"
+            class="form-control"
+            name="file"
+            [(ngModel)]="file"
+          />
+          <div class="text-danger" [hidden]="fil.valid || fil.pristine">
+            please Select File
+          </div>
+        </div>
+        <div class="col-2 mt-3">
+          <button
+            class="btn btn-dark"
+            type="submit"
+            [disabled]="student.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -16,11 +16,13 @@ export class ProductService {
     if (category) {
       return this.http.get<ProductData>(this.api + `/category/${category}`);
     } else {
-      return this.http.get<ProductData>(this.api);
+      return this.http.get<ProductData>(this.api + '?limit=200');
     }
   }
   public getCategory(): Observable<string[]> {
-    return this.http.get<string[]>('https://dummyjson.com/products/categories');
+    return this.http.get<string[]>(
+      'https://dummyjson.com/products/category-list'
+    );
   }
   public addProducts(data: any) {
     const a = this.http.post('https://dummyjson.com/products/add', data);

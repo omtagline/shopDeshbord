@@ -30,4 +30,10 @@ export class SingUpComponent {
       }),
     });
   }
+
+  checkValid(name: string): boolean | undefined {
+    return (
+      this.singUpForm.get(name)?.valid || this.singUpForm.get(name)?.untouched
+    );
+  }
 }

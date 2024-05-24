@@ -1,0 +1,195 @@
+<div class="container">
+  <div class="row vh-100 align-items-center">
+    <div class="col-5 mt-5">
+      <form [formGroup]="todoForm" (change)="formChange()">
+        <div class="row">
+          <h1 class="text-center mb-5">TODO:</h1>
+          <div class="col-6">
+            <label class="form-label pt-3 mb-0" for="name">Client Name</label>
+            <input
+              type="text"
+              class="name form-control"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+          <div class="col-6">
+            <label class="form-label pt-3 mb-0" for="projectname"
+              >Project Name</label
+            >
+            <input
+              type="text"
+              formControlName="projectName"
+              class="projectname form-control"
+              id="projectname"
+            />
+          </div>
+          <div class="col-6">
+            <label class="form-label pt-3 mb-0" for="wh"
+              >Total Working Hours</label
+            >
+            <input
+              type="number"
+              class="wh form-control"
+              id="wh"
+              formControlName="workingHour"
+            />
+          </div>
+          <div class="col-12" formArrayName="completedTask">
+            <label class="form-label pt-3 mb-0 d-block" for="task"
+              >List of completed task</label
+            >
+            <ng-container
+              *ngFor="let item of getCompletedTsk().controls; let i = index"
+            >
+              <!-- @for (item of getCompletedTsk().controls; track $index) { -->
+              <div class="row">
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="completedtask form-control mt-2"
+                    id="completedtask"
+                    [formControlName]="i"
+                  />
+                </div>
+                <div class="col-2" [ngStyle]="{ width: '50px' }">
+                  <button
+                    (click)="add('c')"
+                    class="btn btn-dark w-auto"
+                    [disabled]="item.invalid || item.untouched"
+                  >
+                    <i class="bi bi-plus-circle-fill fs-5"></i>
+                  </button>
+                </div>
+
+                @if (i >0) {
+                <div class="col-2">
+                  <button (click)="delete(i, 'c')" class="btn btn-dark">
+                    <i class="bi bi-trash-fill fs-5"></i>
+                  </button>
+                </div>
+
+                } @if (item.invalid && item.touched) {
+
+                <div class="col-12 text-danger">please fill the field</div>
+                }
+              </div>
+            </ng-container>
+            <!-- } -->
+          </div>
+          <div class="col-12" formArrayName="pendingTask">
+            <label class="form-label pt-3 mb-0 d-block" for="task"
+              >List of Pending task</label
+            >
+            <ng-container
+              *ngFor="let item of getPendingTask().controls; let i = index"
+            >
+              <!-- @for (item of getCompletedTsk().controls; track $index) { -->
+              <div class="row">
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="completedtask form-control mt-2"
+                    id="completedtask"
+                    [formControlName]="i"
+                  />
+                </div>
+                <div class="col-2" [ngStyle]="{ width: '50px' }">
+                  <button
+                    (click)="add('p')"
+                    class="btn btn-dark d-inline-block"
+                    [disabled]="item.invalid || item.untouched"
+                  >
+                    <i class="bi bi-plus-circle-fill fs-5"></i>
+                  </button>
+                </div>
+                @if (i >0) {
+                <div class="col-2">
+                  <button (click)="delete(i, 'p')" class="btn btn-dark">
+                    <i class="bi bi-trash-fill fs-5"></i>
+                  </button>
+                </div>
+                } @if (item.invalid && item.touched) {
+                <div class="col-12 text-danger">please fill the field</div>
+
+                }
+              </div>
+            </ng-container>
+            <!-- } -->
+          </div>
+          <!-- <div class="col-12">
+            <label class="form-label pt-3 mb-0" for="wh"
+              >List in progress task</label
+            >
+            <div class="form-g"></div>
+            <input type="text" class="pt form-control" id="pt" />
+          </div> -->
+          <div class="col-12 pt-2 mt-5 d-flex justify-content-center">
+            <button class="btn btn-dark w-25">Add</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-6 border-start border-2 vh-100 position-relative">
+      <div class="position-absolute end-0 top-0 mt-5">
+        <button (click)="copy(main)" class="btn btn-dark">copy</button>
+      </div>
+      <div class="row justify-content-center align-items-center" #main>
+        <h3 class="text-muted text-center">TODO List</h3>
+        <div class="col-12">
+          <h4>{{ 1 }}</h4>
+        </div>
+
+        <div class="col-12">
+          <p class="fw-bold fs-4 m-1 d-block">
+            {{ contentRender("name", "Hi :") }}
+          </p>
+        </div>
+        <div class="col-12">
+          <p class="fw-semibold ps-1 text-capitalize fs-5 d-block">
+            {{ contentRender("projectName", "Project :") }}
+          </p>
+        </div>
+        <div class="col-12">
+          <p class="ps-5 text-capitalize fs-6 d-block">
+            {{ contentRender("workingHour", "Working Hours :") }}
+          </p>
+        </div>
+        @if (todoForm.get('completedTask')?.touched) {
+
+        <div class="col-12">
+          @for (item of getCompletedTsk().controls; track $index) { @if
+          (item.value!=='' ) {
+          <p class="text-muted mb-1">
+            {{ $index == 0 ? "Completed Task:" : "" }}
+          </p>
+          <p class="ps-5 pt-1 m-0 text-capitalize fs-6 d-block">
+            {{ $index + 1 + " ." }}
+            <span class="fs-6">
+              {{ item.value }}
+            </span>
+          </p>
+          } }
+        </div>
+        } @if (todoForm.get('pendingTask')?.touched) {
+
+        <div class="col-12 mt-4">
+          @for (item of getPendingTask().controls; track $index) { @if
+          (item.value!=='' ) {
+          <p class="text-muted mb-1">
+            {{ $index == 0 ? "pending Task:" : "" }}
+          </p>
+          <p class="ps-5 pt-1 m-0 text-capitalize fs-6 d-block">
+            {{ $index + 1 + " ." }}
+            <span class="fs-6">
+              {{ item.value }}
+            </span>
+          </p>
+          } }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

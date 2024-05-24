@@ -17,10 +17,7 @@
             />
             <p
               class="text-danger rounded mt-1"
-              [hidden]="
-                singUpForm.get('username')?.valid ||
-                singUpForm.get('username')?.untouched
-              "
+              [hidden]="checkValid('username')"
             >
               Enter valid username
             </p>
@@ -33,13 +30,7 @@
               name="email"
               formControlName="email"
             />
-            <p
-              class="text-danger rounded mt-1"
-              [hidden]="
-                singUpForm.get('email')?.valid ||
-                singUpForm.get('email')?.untouched
-              "
-            >
+            <p class="text-danger rounded mt-1" [hidden]="checkValid('email')">
               Enter valid email
             </p>
           </div>
@@ -51,13 +42,7 @@
               name="password"
               formControlName="pswd"
             />
-            <p
-              class="text-danger rounded mt-1"
-              [hidden]="
-                singUpForm.get('pswd')?.valid ||
-                singUpForm.get('pswd')?.untouched
-              "
-            >
+            <p class="text-danger rounded mt-1" [hidden]="checkValid('pswd')">
               Enter valid password
             </p>
           </div>
